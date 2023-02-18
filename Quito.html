@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Document</title>
+</head>
+<body>
+    <div class="title">
+        <h1>La Ciudad mitad del Mundo</h1>
+    </div>
+    <div class="img">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/59/Ciudad_Mitad_del_Mundo.jpg/800px-Ciudad_Mitad_del_Mundo.jpg" alt="Mitad del Mundo">
+    </div>
+    <div class="main-content">
+        <div class="main-content-info">
+            <p>
+                La Ciudad Mitad del Mundo es un terreno propiedad de la prefectura de la provincia de Pichincha. Está situado en la parroquia de San Antonio del Distrito Metropolitano de Quito, al norte de la ciudad de Quito.<br><br>
+
+                La principal atracción del lugar es el monumento a la Mitad del Mundo, el cual tiene como finalidad el resaltar la ubicación exacta de la línea ecuatorial, del cual el país toma su nombre, y destacar también la misión geodésica franco-española del siglo XVIII que ubicó el sitio aproximado por el cual pasa la línea equinoccial.<br><br>
+
+                También se encuentra el Museo Etnográfico Mitad del Mundo, un museo sobre la etnografía indígena de Ecuador. Una pequeña ciudad que rodea el monumento actúa como centro turístico, ofreciendo una réplica de una ciudad colonial española llamada "Ciudad Mitad del Mundo". 
+            </p>
+        </div>
+    </div>
+    <div class="ubication">
+        <p>
+            Su ubicacion actual: 
+            <span id="location"></span>
+        </p>
+        <p>
+            Distancia a la mitad del mundo: 
+            <span id="distance"></span>
+        </p>
+    </div>
+    <script>
+        
+
+      // Obtener la ubicación actual
+
+      navigator.geolocation.getCurrentPosition(function (position) {
+
+var lat1 = position.coords.latitude;
+
+var lon1 = position.coords.longitude;
+
+
+
+// La ubicación de Quito es  ??
+
+var lat2 = -0.0102496 ;
+
+var lon2 = -78.4464668;
+
+
+
+// Función para calcular la distancia en kilómetros
+
+var R = 6371; // Radio de la Tierra (km)
+
+var dLat = (lat2 - lat1) * (Math.PI / 180);
+
+var dLon = (lon2 - lon1) * (Math.PI / 180);
+
+var a = Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+
+        Math.cos(lat1 * (Math.PI / 180)) * Math.cos(lat2 * (Math.PI / 180)) *
+
+        Math.sin(dLon / 2) * Math.sin(dLon / 2);
+
+var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+
+var d = R * c;
+
+
+
+// Mostrar la distancia en la página
+
+document.getElementById("location").innerHTML = lat1 + ", " + lon1;
+
+document.getElementById("distance").innerHTML = d + " km";
+
+});
+
+
+    </script>
+</body>
+</html>
